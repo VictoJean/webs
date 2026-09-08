@@ -1,0 +1,83 @@
+/* 强制全屏，消除所有滚动条和内外边距 */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* 绝对禁止出现上下左右滚动条 */
+  background-color: #000;
+  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+/* 画布占满全屏，放在底层 (z-index: 1) */
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  z-index: 1;
+}
+
+/* 悬浮覆盖层，满屏，盖在画布上方 (z-index: 2) */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.2); /* 给整个屏幕加一点点极淡的暗色遮罩，不影响动画但能让文字更清晰 */
+}
+
+/* 中间的文字卡片区（带一点高级的毛玻璃效果） */
+.content {
+  text-align: center;
+  padding: 50px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px); /* 毛玻璃效果 */
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.content h1 {
+  font-size: 2.8rem;
+  margin: 0 0 15px 0;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+}
+
+.content p {
+  font-size: 1.2rem;
+  color: #e0e0e0;
+  margin: 0 0 40px 0;
+}
+
+.links {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 12px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+.links a:hover {
+  background: #fff;
+  color: #000;
+  transform: translateY(-2px);
+}
